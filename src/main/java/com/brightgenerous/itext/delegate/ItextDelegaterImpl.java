@@ -7,6 +7,18 @@ import com.lowagie.text.pdf.PdfReader;
 
 class ItextDelegaterImpl implements ItextDelegater {
 
+    {
+        check();
+    }
+
+    private static void check() {
+        try {
+            Class.forName(PdfReader.class.getName());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @SuppressWarnings("unused")
     @Override
     public boolean isPdf(InputStream inputStream, byte[] password) {

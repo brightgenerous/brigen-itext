@@ -25,7 +25,7 @@ public class ItextUtility {
         } catch (NoClassDefFoundError | RuntimeException e) {
 
             if (log.isLoggable(Level.INFO)) {
-                log.log(Level.INFO, "does not resolve jxl api");
+                log.log(Level.INFO, "does not resolve itext");
             }
 
             if (e instanceof RuntimeException) {
@@ -46,10 +46,14 @@ public class ItextUtility {
     private ItextUtility() {
     }
 
-    public static boolean isPdf(InputStream inputStream, byte[] password) {
+    private static ItextDelegater getDelegater() {
         if (delegater == null) {
             throw rex;
         }
-        return delegater.isPdf(inputStream, password);
+        return delegater;
+    }
+
+    public static boolean isPdf(InputStream inputStream, byte[] password) {
+        return getDelegater().isPdf(inputStream, password);
     }
 }
