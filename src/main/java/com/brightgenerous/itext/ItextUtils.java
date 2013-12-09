@@ -59,6 +59,9 @@ public class ItextUtils {
         if (!file.canRead()) {
             return false;
         }
+        if (file.isDirectory()) {
+            return false;
+        }
 
         boolean ret = false;
         try {
